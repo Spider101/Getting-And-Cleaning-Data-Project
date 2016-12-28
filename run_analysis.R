@@ -15,6 +15,7 @@
 ## 4. Appropriately label the data set with descriptive variable names.
 ## 5. From the data set in step 4, create a second, independent tidy data set
 ##    with the average of each variable for each activity and each subject.
+
 ###############################################################################
 
 ## Setup
