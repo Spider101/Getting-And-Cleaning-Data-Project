@@ -14,7 +14,7 @@ rm(list = ls())
 
 #setup
 library(data.table)
-#library(dplyr)
+library(dplyr)
 
 featuresPath <- "./data/features.txt"
 activityLabelsPath <- "./data/activity_labels.txt"
@@ -90,3 +90,9 @@ for(i in seq_along(dataVariables)){
     dataVariables[i] <- gsub("(Body){2}", "Body", dataVariables[i])
     dataVariables[i] <- gsub("Mag", "Magnitude", dataVariables[i])
 }
+
+#replace the dataset variable names with the formatted variable names
+colnames(dataSubset) <- dataVariables
+
+## Part 5: Create a second, independent tidy data set with the average of each
+## variable for each activity and each subject.
