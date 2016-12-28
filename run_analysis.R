@@ -73,3 +73,20 @@ dataSubset <- finalDataset[, datasetVariableSubset, with = F]
 #merge the overall dataset with the activitiesLabel dataset to add labels for
 #each record
 dataSubset <- merge(dataSubset, activityLabels, by = "activityID")
+
+## Part 4: Appropriately label the data set with descriptive variable names.
+
+dataVariables <- colnames(dataSubset)
+
+#loop through the variable names and replace technical nomenclature with
+#meaningful names
+for(i in seq_along(dataVariables)){
+    dataVariables[i] <- gsub("\\-", "", dataVariables[i])
+    dataVariables[i] <- gsub("\\()", "", dataVariables[i])
+    dataVariables[i] <- gsub("mean", "Mean", dataVariables[i])
+    dataVariables[i] <- gsub("std", "Std", dataVariables[i])
+    dataVariables[i] <- gsub("^t", "time", dataVariables[i])
+    dataVariables[i] <- gsub("^f", "freq", dataVariables[i])
+    dataVariables[i] <- gsub("(Body){2}", "Body", dataVariables[i])
+    dataVariables[i] <- gsub("Mag", "Magnitude", dataVariables[i])
+}
