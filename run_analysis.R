@@ -57,7 +57,15 @@ finalDataset <- rbind(trainingData, testData)
 ## Part 2: Extract only the measurements on the mean and standard deviation for
 ## each measurement.
 
-datasetVariableSubset <- grep("mean\\(\\)|std\\(\\)", colnames(finalDataset))
+#find matches for 'mean()' and 'std()' partials in the variable names
+meanAndStdMatches <- grep("mean\\(\\)|std\\(\\)", colnames(finalDataset))
+
+#get the variable names of the matches found above and concatenate them with
+#the activity and subject id variable names
+datasetVariableSubset <- colnames(finalDataset)[meanAndStdMatches]
+datasetVariableSubset <- c(datasetVariableSubset, "activityID", "subjectID")
+
+#subset the overall dataset based on the subset of variable names computed above
 dataSubset <- finalDataset[, datasetVariableSubset, with = F]
 
-## Part 3
+## Part 3: Use descriptive activity names to name the activities in the data set
