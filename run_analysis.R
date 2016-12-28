@@ -96,3 +96,13 @@ colnames(dataSubset) <- dataVariables
 
 ## Part 5: Create a second, independent tidy data set with the average of each
 ## variable for each activity and each subject.
+
+#group dataset by the subjectID and activityID (included activity for sake of
+#better presentation in the dataset), compute mean of remaining variables and
+#extract out this summary along with the grouping variables as the tidy dataset
+tidyDataset <- dataSubset %>%
+                group_by(subjectID, activityID, activity) %>%
+                summarize_each(funs(mean))
+
+#export the tidy dataset
+write.csv(tidyDataset, "./data/tidy_dataset.csv")
