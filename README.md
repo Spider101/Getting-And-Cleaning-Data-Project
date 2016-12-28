@@ -14,4 +14,4 @@ This script is a demonstration of a data cleaning pipeline. It works on the data
 
 ### Notes for using this repository
 
-After you have cloned this repository or downloaded the source files, keep in mind that you have to change the path variables in *run_analysis.R* script to point to the respective locations (on your machine) of the dataset text files involved. Additional details about the process and variables can be found in the *Codebook.MD* file.
+After you have cloned this repository or downloaded the source files, keep in mind that you have to change the path variables in *run_analysis.R* script to point to the respective locations (on your machine) of the dataset text files involved. Additional details about the process and variables can be found in the *Codebook.md* file.
