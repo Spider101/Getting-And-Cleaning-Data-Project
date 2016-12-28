@@ -39,3 +39,10 @@ testDataFeatures <- fread(testDataFeaturesPath, header = F)
 testDataLabels <- fread(testDatLabelsPath, header = F)
 colnames(testDataFeatures) <- as.character(features$feature)
 colnames(testDataLabels) <- "activityID"
+
+## Part 1: Merge the training and the test sets to create one data set.
+
+#merge the features vectors and labels of the training and test set respectively
+trainingData <- cbind(trainDataFeatures, trainDataLabels)
+testData <- cbind(testDataFeatures, testDataLabels)
+finalDataset <- rbind(trainingData, testData)
