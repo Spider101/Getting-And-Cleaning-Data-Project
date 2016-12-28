@@ -7,7 +7,9 @@
 ## File Description:
 
 ## This script is a demonstration of a data cleaning pipeline. It works on the
-## datasets found in the UCI HAR Dataset and performs the following steps:
+## datasets found in the UCI HAR Dataset
+## [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones]
+## and performs the following steps:
 ## 1. Merge the training and the test sets to create one data set.
 ## 2. Extract only the measurements on the mean and standard deviation for each
 ##    measurement.
