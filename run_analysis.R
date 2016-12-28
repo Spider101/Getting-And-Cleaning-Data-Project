@@ -9,10 +9,12 @@
 ##
 ###############################################################################
 
+## Setup
+
 #clean workspace
 rm(list = ls())
 
-#setup
+#using dplyr_0.5.0 and data.table_1.10.0
 library(data.table)
 library(dplyr)
 
