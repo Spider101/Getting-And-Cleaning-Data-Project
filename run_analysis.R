@@ -14,6 +14,7 @@ rm(list = ls())
 
 #setup
 library(data.table)
+#library(dplyr)
 
 featuresPath <- "./data/features.txt"
 activityLabelsPath <- "./data/activity_labels.txt"
@@ -55,3 +56,8 @@ finalDataset <- rbind(trainingData, testData)
 
 ## Part 2: Extract only the measurements on the mean and standard deviation for
 ## each measurement.
+
+datasetVariableSubset <- grep("mean\\(\\)|std\\(\\)", colnames(finalDataset))
+dataSubset <- finalDataset[, datasetVariableSubset, with = F]
+
+## Part 3
