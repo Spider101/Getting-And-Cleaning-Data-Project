@@ -19,14 +19,20 @@ featuresPath <- "./data/features.txt"
 activityLabelsPath <- "./data/activity_labels.txt"
 trainDataFeaturesPath <- "./data/train/X_train.txt"
 trainDataLabelsPath <- "./data/train/y_train.txt"
+trainDataSubjectsPath <- "./data/train/subject_train.txt"
 testDataFeaturesPath <- "./data/test/X_test.txt"
 testDatLabelsPath <- "./data/test/y_test.txt"
+testDataSubjectsPath <- "./data/test/subject_test.txt"
 
 # load the metadata in
 features <- read.table(featuresPath, header = F)
 activityLabels <- read.table(activityLabelsPath, header = F)
+trainDataSubjects <- read.table(trainDataSubjectsPath)
+testDataSubjects <- read.table(testDataSubjectsPath)
 colnames(features) <- c("featureID", "feature")
 colnames(activityLabels) <- c("activityID", "activity")
+colnames(trainDataSubjects) <- "subjectID"
+colnames(testDataSubjects) <- "subjectID"
 
 #load the training data in and assign the right variable names to the columns
 trainDataFeatures <- fread(trainDataFeaturesPath, header = F)
@@ -43,6 +49,9 @@ colnames(testDataLabels) <- "activityID"
 ## Part 1: Merge the training and the test sets to create one data set.
 
 #merge the features vectors and labels of the training and test set respectively
-trainingData <- cbind(trainDataFeatures, trainDataLabels)
-testData <- cbind(testDataFeatures, testDataLabels)
+trainingData <- cbind(trainDataFeatures, trainDataLabels, trainDataSubjects)
+testData <- cbind(testDataFeatures, testDataLabels, testDataSubjects)
 finalDataset <- rbind(trainingData, testData)
+
+## Part 2: Extract only the measurements on the mean and standard deviation for
+## each measurement.
