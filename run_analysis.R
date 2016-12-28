@@ -69,3 +69,7 @@ datasetVariableSubset <- c(datasetVariableSubset, "activityID", "subjectID")
 dataSubset <- finalDataset[, datasetVariableSubset, with = F]
 
 ## Part 3: Use descriptive activity names to name the activities in the data set
+
+#merge the overall dataset with the activitiesLabel dataset to add labels for
+#each record
+dataSubset <- merge(dataSubset, activityLabels, by = "activityID")
