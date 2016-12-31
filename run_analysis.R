@@ -26,17 +26,27 @@
 rm(list = ls())
 
 #using dplyr_0.5.0 and data.table_1.10.0
-library(data.table)
-library(dplyr)
+require("data.table")
+require("dplyr")
 
-featuresPath <- "./data/features.txt"
-activityLabelsPath <- "./data/activity_labels.txt"
-trainDataFeaturesPath <- "./data/train/X_train.txt"
-trainDataLabelsPath <- "./data/train/y_train.txt"
-trainDataSubjectsPath <- "./data/train/subject_train.txt"
-testDataFeaturesPath <- "./data/test/X_test.txt"
-testDatLabelsPath <- "./data/test/y_test.txt"
-testDataSubjectsPath <- "./data/test/subject_test.txt"
+#setup environment for the rest of the script's code
+if(!file.exists("data")){
+    dir.create("data")
+    dataUrl <- paste("https://d396qusza40orc.cloudfront.net/getdata%2F",
+                     "projectfiles%2FUCI%20HAR%20Dataset.zip",
+                     collapse ="", sep = "")
+    dataZipPath <- "./data/UCI HAR Dataset.zip"
+    download.file(dataUrl, dataZipPath)
+    dataPath <- unzip(dataZipPath, exdir = "./data")
+    featuresPath <- dataPath[2]
+    activityLabelsPath <- dataPath[1]
+    trainDataSubjectsPath <- dataPath[26]
+    testDataSubjectsPath <- dataPath[14]
+    trainDataFeaturesPath <- dataPath[27]
+    trainDataLabelsPath <- dataPath[28]
+    testDataFeaturesPath <- dataPath[15]
+    testDataLabelsPath <- dataPath[16]
+}
 
 # load the metadata in
 features <- read.table(featuresPath, header = F)
@@ -56,7 +66,7 @@ colnames(trainDataLabels) <- "activityID"
 
 #load the test data in and assign the right variable names to the columns
 testDataFeatures <- fread(testDataFeaturesPath, header = F)
-testDataLabels <- fread(testDatLabelsPath, header = F)
+testDataLabels <- fread(testDataLabelsPath, header = F)
 colnames(testDataFeatures) <- as.character(features$feature)
 colnames(testDataLabels) <- "activityID"
 
