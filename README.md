@@ -11,7 +11,3 @@ This script is a demonstration of a data cleaning pipeline. It works on the data
 3. Use descriptive activity names to name the activities in the data set
 4. Appropriately label the data set with descriptive variable names.
 5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
-
-### Notes for using this repository
-
-After you have cloned this repository or downloaded the source files, keep in mind that you have to change the path variables in *run_analysis.R* script to point to the respective locations (on your machine) of the dataset text files involved. Additional details about the process and variables can be found in the *Codebook.md* file.
