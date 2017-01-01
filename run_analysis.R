@@ -138,5 +138,3 @@ tidyDataset <- dataSubset %>%
 
 #export the tidy dataset
 write.table(tidyDataset, "./data/tidy_dataset.txt", sep = " ", row.names = F)
-
-#source("codeBookGen.R")
