@@ -15,3 +15,6 @@ The R script works on the datasets found in the [UCI HAR Dataset](http://archive
 5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 The *Codebook.md* file provides information about the variables in the tidy dataset that cannot be inferred from the dataset itself, lists the transformations performed on the original dataset to get the tidy dataset and describes how the original dataset was collected and the choice of variables to be used in the tidy dataset. The *codeBookGen.html* provides summary information about the variables in the tidy dataset. There is a link to it in the markdown file under the **Code Book** section. 
+
+### Notes for using the repository
+The R script downloads the dataset, unzips and stores it in a subdirectory called *data* in your working directory. So, after cloning the repository or downloading the source files directly, simply run `source("run_analysis.R")` and the tidy dataset will created and stored in the *data* subdirectory mentioned earlier.
