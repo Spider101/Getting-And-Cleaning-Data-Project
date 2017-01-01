@@ -20,7 +20,7 @@
 
 ###############################################################################
 
-## Setup
+## Setup environment for the rest of the script's code
 
 #clean workspace
 rm(list = ls())
@@ -29,7 +29,8 @@ rm(list = ls())
 require("data.table")
 require("dplyr")
 
-#setup environment for the rest of the script's code
+#check if the data directory exists, if not then create it, download the dataset
+# and unzip it
 if(!file.exists("data")){
     dir.create("data")
     dataUrl <- paste("https://d396qusza40orc.cloudfront.net/getdata%2F",
@@ -37,7 +38,15 @@ if(!file.exists("data")){
                      collapse ="", sep = "")
     dataZipPath <- "./data/UCI HAR Dataset.zip"
     download.file(dataUrl, dataZipPath)
-    dataPath <- unzip(dataZipPath, exdir = "./data")
+    unzip(dataZipPath, exdir = "./data")
+
+}
+
+#check if the environment is empty, if so then populate it with the necessary
+#variables
+if(length(ls()) == 0){
+    datasetLoc <- list.dirs("./data/", recursive = F)
+    dataPath <- list.files(datasetLoc[1], full.names = T, recursive = T)
     featuresPath <- dataPath[2]
     activityLabelsPath <- dataPath[1]
     trainDataSubjectsPath <- dataPath[26]
@@ -129,3 +138,5 @@ tidyDataset <- dataSubset %>%
 
 #export the tidy dataset
 write.table(tidyDataset, "./data/tidy_dataset.txt", sep = " ", row.names = F)
+
+#source("codeBookGen.R")
