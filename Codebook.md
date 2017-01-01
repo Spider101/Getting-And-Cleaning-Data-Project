@@ -1,24 +1,20 @@
-## Getting And Cleaning Data Project
+# Getting And Cleaning Data Project
 
-### File Description
+## File Description
 A codebook for the the tidy dataset produced as a result of running the 'run_analysis.R' script. It contains information about the variables in the data and the transformations performed on the dataset to get the final tidy dataset.
 
-#### Data Source
+### Data Source
 A full description of the data used in this project can be found at [The UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
-#### Dataset Description
-The experiments was been carried out with a group of *30* volunteers within an age bracket of *19-48* years. Each person performed six activities (***WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING***) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, **3-axial linear acceleration** and **3-axial angular velocity** were captured at a constant rate of *50Hz*. The experiments were been video-recorded to label the data manually. The obtained dataset was randomly partitioned into two sets, where *70%* of the volunteers was selected for generating the training data and *30%* the test data. 
-
-The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of *2.56* sec and *50%* overlap (*128* readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a ***Butterworth low-pass filter*** into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with *0.3Hz* cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain **[see below]**.
-
-#### Variables Description
-The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals **tAcc-XYZ** and **tGyro-XYZ** (prefix *t* to denote time). The acceleration and gyroscope signals were then separated into body and gravity acceleration signals (**tBodyAcc-XYZ**, **tGravityAcc-XYZ**, **tBodyGyro-XYZ**, **tGravityGyro-XYZ**).
+### Variables Description
+The features selected for the UCI HAR Dataset come from the accelerometer and gyroscope 3-axial raw signals **tAcc-XYZ** and **tGyro-XYZ** (prefix *t* to denote time). The acceleration and gyroscope signals were then separated into body and gravity acceleration signals (**tBodyAcc-XYZ**, **tGravityAcc-XYZ**, **tBodyGyro-XYZ**, **tGravityGyro-XYZ**).
 
 Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (**tBodyAccJerk-XYZ** and **tBodyGyroJerk-XYZ**). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (**tBodyAccMag**, **tGravityAccMag**, **tBodyAccJerkMag**, **tBodyGyroMag**, **tBodyGyroJerkMag**). 
 
 Finally a **Fast Fourier Transform** (FFT) was applied to some of these signals producing **fBodyAcc-XYZ**, **fBodyAccJerk-XYZ**, **fBodyGyro-XYZ**, **fBodyAccJerkMag**, **fBodyGyroMag**, **fBodyGyroJerkMag** (prefix *f* to indicate frequency domain signals). 
 
-These signals were used to estimate variables of the feature vector for each pattern:  
+### Code Book
+The signals mentioned above were used to estimate variables of the feature vector in the original HAR dataset:  
 (*-XYZ* is used to denote 3-axial signals in the X, Y and Z directions)
 
 1. tBodyAcc-XYZ
@@ -68,7 +64,11 @@ Additional vectors obtained by averaging the signals in a signal window sample:
 4. tBodyGyroMean
 5. tBodyGyroJerkMean
 
-#### Transformations:
+The tidy dataset on the other hand focusses on *66* out of the *561* variables in the original dataset. Please reference the file below (created using Knitr) for the summary of the variables found in the tidy dataset.
+
+<a href="http://htmlpreview.github.com/?https://github.com/Spider101/Getting-And-Cleaning-Data-Project/blob/master/codeBookGen.html" target="_blank">Tidy Dataset Codebook</a>
+
+### Transformations:
 
 **PART I: Merge the training and the test sets to create one data set**
 
@@ -119,3 +119,10 @@ Step 1. Group dataset by the subjectID and activityID (included activity for sak
 Step 2. Compute mean of the remaining variables and extract out this summary along with the grouping variables as the tidy dataset.
 
 Step 3. Export the tidy dataset.
+
+### Study Design
+The original UCI HAR dataset was obtained from this [link](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). Thereafter, the various components of the dataset were combined to form a single dataset (this process is explained in the section **Transformations**) of 563 variables and 10299 records. Out of the 563 variables, 561 of them related to the signals observed in the original experiment and the remaining two were identifier variables - **subjectID** and **activityID**). As determined by the project requirements, the variables chosen for the tidy dataset were the mean and standard deviation of the signals mentioned in the section **Code Book**. These variables were then averaged over the records for each subject and each activity in the original experiment to form the final tidy dataset. The details of the original experiment are given below:
+
+The experiments were carried out with a group of *30* volunteers within an age bracket of *19-48* years. Each person performed six activities (***WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING***) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, **3-axial linear acceleration** and **3-axial angular velocity** were captured at a constant rate of *50Hz*. The experiments were been video-recorded to label the data manually. The obtained dataset was randomly partitioned into two sets, where *70%* of the volunteers was selected for generating the training data and *30%* the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of *2.56* sec and *50%* overlap (*128* readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a ***Butterworth low-pass filter*** into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with *0.3Hz* cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
